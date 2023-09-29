@@ -45,7 +45,6 @@
 #
 
 
-
 #
 # 4)
 # Create a function called "has_experience_as"
@@ -57,8 +56,23 @@
 # representing the usernames of every user that
 # has worked as job_title.
 
+from itertools import islice
+
+CV=[{'user': 'john', 'jobs': ['analyst', 'engineer']}, {'user': 'jane', 'jobs': ['finance', 'software']}]
+
+test= [[i for i in CV[x]] for x in CV.items()]
+
+print(str(test))
+
+def has_experience_as(a : list, job_title : str):
+    names=[]
+    for val[1] in a.items:
+        if job_title==a.items[1]:
+            print(a.items[0])
 
 
+linkedin= has_experience_as(CV, "analyst")
+print(linkedin)
 #
 # 5)
 # Create a function called "job_counts"
@@ -99,6 +113,8 @@
 # number of registered cases is not the same (thus
 # the length of the lists can differ)
 
+cases={'Spain': [4, 8, 2, 0, 1], 'France': [2, 3, 6], 'Italy': [6, 8, 1, 7]}
+
 
 # 7)
 # Create a function called "total_registered_cases"
@@ -108,6 +124,15 @@
 #
 # The function should return the total number of cases
 # registered so far in that country
+
+cases={'Spain': [4, 8, 2, 0, 1], 'France': [2, 3, 6], 'Italy': [6, 8, 1, 7]}
+
+def total_registered_cases(a : dict, b: str):
+    total_per_country=sum(a.get(b))
+    return total_per_country
+
+answer7=total_registered_cases(cases, "Spain")
+print(answer7)
 
 
 # 8)
@@ -120,6 +145,17 @@
 # registered so far that the country had
 #
 
+cases={'Spain': [4, 8, 2, 0, 1], 'France': [2, 3, 6], 'Italy': [6, 8, 1, 7]}
+
+def total_registered_cases(a : dict, b: str):
+    country=b
+    total_per_country=sum(a.get(b))
+    new_dict={country:total_per_country}
+    return new_dict
+
+answer8=total_registered_cases(cases, "France")
+print(answer8)
+
 
 # 9)
 # Create a function called "country_with_most_cases"
@@ -128,6 +164,19 @@
 #
 # The function should return the country with the
 # greatest total amount of cases
+
+cases={'Spain': [4, 8, 2, 0, 1], 'France': [2, 3, 6], 'Italy': [6, 8, 1, 7]}
+
+def country_with_most_cases(dictionary : dict):
+    new_dict={}
+    for k in dictionary.keys():
+        total_per_country=sum(dictionary.get(k))
+        new_dict.update({k:total_per_country})
+    max_key = max(new_dict, key=lambda k: new_dict[k])
+    return max_key
+
+answer9=country_with_most_cases(cases)
+print(answer9)
 
 
 
@@ -142,4 +191,15 @@
 # Follow DRY principles in order to complete this exercise.
 #
 #
-# #
+
+import pandas as pd
+
+path= "/Users/ruimaciel/Desktop/Barcelona/Computing for Data Science/computing_ds/covid.csv"
+
+covids = pd.read_csv(path)
+covids500=covids.loc[covids['Confirmed'] > 500, 'Country']
+covids500
+
+
+
+

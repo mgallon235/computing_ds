@@ -44,14 +44,14 @@ print(answer7)
 
 cases={'Spain': [4, 8, 2, 0, 1], 'France': [2, 3, 6], 'Italy': [6, 8, 1, 7]}
 
-def total_registered_cases(a : dict, b: str):
+def total_registered_cases(a : dict):
     new_dict={}
     for k in a.keys():
         total_per_country=sum(a.get(k))
         new_dict.update({k:total_per_country})
     return new_dict
 
-answer8=total_registered_cases(cases, "France")
+answer8=total_registered_cases(cases)
 print(answer8)
 
 

@@ -10,15 +10,19 @@
 #
 #
 
-import pandas as pd
+import pandas  as pd
 
-path= "/Users/ruimaciel/Desktop/Barcelona/Computing for Data Science/computing_ds/covid.csv"
-list=(500,1000,5000)
-for i in list:
-    covids = pd.read_csv(path)
-    covids=covids.loc[covids['Confirmed'] > i, ['Country','Deaths', "Confirmed"]]
-    print(f"Countries and respective deaths and confirmed cases of covid with more than {i} confirmed cases")
-    covids
-    mean_deaths=covids["Confirmed"].mean()
-    mean_confirmed=covids["Deaths"].mean()
-    print(f"The total average of Deaths and Confirmed cases among countries with more than {i} active cases daily are, respectively, {mean_deaths} and {mean_confirmed}.")
+def country_summary():
+    df =  pd.read_csv('./covid.csv')
+    ranges = [500,1000,5000]
+    for r in ranges:
+        new_df = df['Country'][df['Active']>r]
+        tot_avg_death =  round(df['Deaths'][df['Active']>r].mean())
+        tot_avg_confirmed =  round(df['Confirmed'][df['Active']>r].mean())
+
+        print(r)
+        print(new_df)
+        print('avg confirmed',tot_avg_confirmed)
+        print('avg death',tot_avg_death)
+
+country_summary()
